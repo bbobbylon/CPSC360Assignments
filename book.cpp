@@ -12,7 +12,7 @@ using namespace std;
 Book::Book()
 {
 	srand(time(NULL));
-	std::cout << "Here is the default constructor" << std::endl;
+	//std::cout << "Here is the default constructor" << std::endl;
 	checkedOut = false;
 	title = "No Title";
 	bookID = rand() % 1000 + 1;
@@ -33,7 +33,7 @@ Book::Book(string bookTitle, int ID, bool t)
 
 //copy constructor
 
-Book::Book(const BookClass& bookObj)
+Book::Book(const Book& bookObj)
 {
 	title = bookObj.title;
 	bookID = bookObj.bookID;
@@ -51,7 +51,7 @@ std::string Book::getTitle() const
 	return title;
 }
 
-int Book::getBookID() 
+int Book::getBookID()
 {
 	return bookID;
 }
@@ -70,7 +70,7 @@ void Book::setBookID(int b)
 bool Book::isCheckedOut()
 {
 	return checkedOut;
-	
+
 }
 
 //void method that checks to see if a book is already being rented
@@ -96,7 +96,7 @@ std::string Book::isBookAvailable()
 	{
 		return "This book is already being rented out,sorry.";
 	}
-	else 
+	else
 	{
 		return "This book is available";
 	}
@@ -109,4 +109,36 @@ void Book::returnBook()
 {
 	checkedOut == false;
 
+}
+
+//declaring overloaded operators, they are very similar 
+Book Book::operator+(const Book& right)
+{
+	//define what we want this operator to do when called in main
+	Book temp; //creating a temporary book object
+	temp.title = title + "," +  right.title;//assign first object title equal to second object's title plus first objects title
+	srand(time(0));		
+	temp.bookID = rand() % 1000 + 1;
+	temp.checkedOut = false;
+	return temp;
+}
+
+//same thing for overloading minus operator
+Book Book::operator-(Book& right)
+{
+	//define what we want this operator to do when called in main
+	title = right.title; //assign second book title to first book title, same with bookID
+	bookID = right.bookID;
+	right.title = "No Title"; //set right side book to No Title and BookID to 0
+	right.bookID = 0 ;
+	return *this;
+}
+
+//setting return type of boolean for the overloaded equals operator
+Book Book::operator=(const Book &right)
+{
+	title = right.title;//setting it equal to the first book, as well as bookID
+	bookID = right.bookID;
+	checkedOut = right.checkedOut;
+	return *this;
 }

@@ -24,7 +24,7 @@ private:
 public:
 
 	//getter prototypes
-	int getBookID() ;
+	int getBookID();
 	bool isCheckedOut(); ///boolean function
 
 	void borrowBook();
@@ -47,7 +47,11 @@ public:
 	//copy constructor
 	Book(const Book& bookObj);
 
-
+	//operator overload prototypes
+	Book operator+(const Book &right);
+	//we dont use const for the - operator because 
+	Book operator-(Book &right);
+	Book operator=(const Book& right);
 };
 
 #endif
