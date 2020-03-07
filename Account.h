@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
-//#define Account_h
-//#ifndef Account_h
+#ifndef Account_h
+#define Account_h
 
 
 
@@ -10,50 +10,32 @@
 class Account
 {
 
-private:
+protected:
 	std::string OwnerName;
 	int AcctNum;
 	double Balance;
 
 public:
-	Account(std::string, int, double); //default constructor prototype
-	Account(double);
-	Account() //define the default constructor 
-	{
-		OwnerName = " ";
-		AcctNum = 0;
-		Balance = 0;
-	}
+
+	
+	Account();//define the default constructor 
+	Account(std::string name, double num, double bal);// constructor
 
 	//getter and setter prototypes and declaration at the same time
-	std::string getOwnerName()
-	{
+	std::string getOwnerName() {
 		return OwnerName;
 	}
-
-	int getAcctNum()
-	{
+	double getAcctNum() {
 		return AcctNum;
 	}
-	
 	double getBalance()
 	{
 		return Balance;
 	}
-
-	void setOwnerName()
-	{
-		std::string OwnerName;
-	}
+	void setOwnerName(std::string name);
 	
-	void  setAcctNum()
-	{
-		AcctNum;
-	}
-	void setBalance()
-	{
-		Balance;
-	}
+	void  setAcctNum(double num);
+	void setBalance(double bal);
 
 
 
@@ -66,49 +48,30 @@ class CheckingAcct:public Account //class that inherits the Account class
 
 private:
 
-	double currentBalance;
+	
 	double withdraw;
-	double secondBalance;
+
 	double deposit;
 
 public:
 
-	CheckingAcct(double, double, double, double);
-	double getCurrentBalance()
-	{
-		return currentBalance;
-	}
+	CheckingAcct(std::string ownerName, double num, double bal);
+	/*
 	double getWithdraw()
 	{
 		return withdraw;
 	}
-	double getSecondBalance()
-	{
-		return secondBalance;
-	}
+
 	double getDeposit()
 	{
 		return deposit;
 	}
+	*/
+	void setDeposit(double amount);
+	
 
-	void setDeposit()
-	{
-		deposit;
-	}
-	void setSecondBalance()
-	{
-		secondBalance;
-	}
-
-	void setWithdraw()
-	{
-		withdraw;
-	}
-	void setCurrentBalance()
-	{
-		currentBalance;
-	}
-
+	void setWithdraw(double amount);
+	
 
 
 };
@@ -118,49 +81,20 @@ class LoanAcct :public Account
 {
 private:
 
-	double calculateInterest;
-	double loanBalance;
 	double interestRate;
-	double payBalance;
 
 public:
 	//getters and setters
-	LoanAcct(double, double, double);
-	double getCalculateInterest()
-	{
-		return calculateInterest;
-	}
-	double getLoanBalance()
-	{
-		return loanBalance;
-	}
-	double getInterestRate()
-	{
-		return interestRate;
-	}
-	double getPayBalance()
-	{
-		return payBalance;
-	}
-	void setCalculateInterest()
-	{
-		calculateInterest;
-	}
-	void setLoanBalance()
-	{
-		loanBalance;
-	}
-	void setInterestRate()
-	{
-		interestRate;
-	}
-	void setPayBalance()
-	{
-		payBalance;
-	}
+	LoanAcct(std::string name, double num, double interest, double bal);
+	void getCalculateInterest();
+	
+	double getInterestRate();
+	void getPayBalance(double amount);
+	void setInterestRate(double amount);
+	
 };
 
 
 
 
-//#endif
+#endif
