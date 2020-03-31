@@ -1,0 +1,50 @@
+//HW8 APL
+<script type="text/javascript">
+
+//initialize our array
+let numEWords = [];
+let input = prompt("Enter some words / a string", "Sample Text");
+alert("You entered: " + input);
+input = input.split(" "); //split the user input by spaces
+
+
+
+//loop that adds words with e in it into the numEWords array
+for(let counter =0; counter<input.length; counter++)
+{
+	let inputWords = input[counter];
+	for(let counter2 = 0;counter2<inputWords.length;counter2++)
+	{
+		if(inputWords[counter2] === "e")
+		{
+			numEWords.push(inputWords);//push the new element of the array into the array
+			break;
+		}
+	}
+}
+//function for finding longest word with e in it and storing it in a variable
+function longestEFinder(str) //takes in a parameter str, which is a user inputted string
+{
+	let longE = "";
+
+	//for loop that goes through each inputted word and stores the word with most es in e
+	for(counter = 0; counter < str.length; counter++)
+	{
+		if(longE.length < str[counter].length)//if it is longer, set it as the longest
+		{
+
+		longE = str[counter];
+
+		}
+	}
+	return longE;
+}
+
+//show results with alerts
+let mostEs = longestEFinder(numEWords); //initialize the variable that will use the function to find longest word with e. it is a string
+
+alert("Longest word that contains e: " + mostEs);
+alert("Number of words that contain e: " + numEWords.length);
+alert("Length of longest word that contains e: " + mostEs.length)
+
+</script>
